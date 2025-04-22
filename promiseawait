@@ -1,0 +1,31 @@
+function fetchData() {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => resolve('Data fetched!'), 1000);
+    });
+  }
+  
+  function processData(data) {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => resolve(data + ' Processed!'), 1000);
+    });
+  }
+  
+  function saveData(data) {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => resolve(data + ' Saved!'), 1000);
+    });
+  }
+  
+async function processDataFlow() {
+    try {
+      const data = await fetchData(); // wait for fetchData to resolve
+      const processedData = await processData(data); // wait for processData to resolve
+      const savedData = await saveData(processedData); // wait for saveData to resolve
+      console.log(savedData); // final result
+    } catch (error) {
+      console.error('Error:', error); // if any operation fails
+    }
+  }
+  
+  processDataFlow();
+  
